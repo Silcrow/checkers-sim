@@ -37,9 +37,26 @@ class Board:
         self.board[0][1] = Piece(0, 1, "king", 1)
         self.board[self.rows - 1][6] = Piece(self.rows - 1, 6, "king", 2)
 
-    def draw(self, win):
+    def draw(self, win, selected=None):
         self.draw_squares(win)
         for row in self.board:
             for piece in row:
                 if piece:
-                    piece.draw(win, self.tile_size)
+                    is_selected = (piece == selected)
+                    piece.draw(win, self.tile_size, is_selected)
+
+    def get_piece(self, row, col):
+        if 0 <= row < self.rows and 0 <= col < self.cols:
+            return self.board[row][col]
+        return None
+
+    def move_piece(self, piece, row, col):
+        if not (0 <= row < self.rows and 0 <= col < self.cols):
+            return False
+        if self.board[row][col] is not None:
+            return False  # Can't move onto another piece
+
+        self.board[piece.row][piece.col] = None
+        self.board[row][col] = piece
+        piece.move(row, col)
+        return True
