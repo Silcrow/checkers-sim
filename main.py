@@ -1,18 +1,10 @@
 # File: main.py
 import pygame
 from board import Board
-from templates.checkers import TEMPLATE as CHECKERS_TEMPLATE
+from game_templates import load_template
 
 # Constants
 WIDTH, HEIGHT = 640, 640
-ROWS, COLS = 8, 8
-TILE_SIZE = WIDTH // COLS
-
-# Colors
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-LIGHT_BROWN = (240, 217, 181)
-DARK_BROWN = (181, 136, 99)
 
 # Initialize pygame
 pygame.init()
@@ -22,7 +14,12 @@ pygame.display.set_caption("Board Simulation Phase 2")
 # Game loop
 def main():
     clock = pygame.time.Clock()
-    board = Board(ROWS, COLS, TILE_SIZE, CHECKERS_TEMPLATE)
+
+    # Load game setup from template
+    game_config = load_template("hnefatafl")
+    TILE_SIZE = WIDTH // game_config["cols"]
+    board = Board(game_config["rows"], game_config["cols"], TILE_SIZE, game_config["setup"])
+
     selected_piece = None
 
     run = True

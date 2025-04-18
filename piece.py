@@ -11,7 +11,7 @@ class Piece:
     def __init__(self, row, col, piece_type, player):
         self.row = row
         self.col = col
-        self.type = piece_type  # "pawn" or "king"
+        self.type = piece_type  # "pawn" or "king" or others
         self.player = player    # 1 or 2
 
     def move(self, row, col):
