@@ -8,15 +8,16 @@ Hnefatafl is achieved (only scoring left)
 - Add another "capture logic" for Hnefatafl (pincers); movement logic is ignored coz we want it to simulate hand picking
 
 up next:
-- fix the pieces starting positions for Hnefatafl
-- add rules: move like a chess king, capture via "flanking" (similar to pincers but any 2 enemy units adjacent with 2 tiles apart counts),
-engagement logic (when an enemy is adjacent, it cannot disengage), disengagement logic (when 2+ is engaging, one of them can disengage, as long as 1 is always engaging it),
+
 - scoring rules work just like capture rules. It's another folder. Make 3 scoring and winning conditions:
   - counting enemy captures and winning when reaching a number.
   - winning by placing the king on the corner tiles
   - winning by capturing the king
 - You only need a winning logic for either player. When one wins, the other instantly loses.
 
+then:
+- add rules: move like a chess king, capture via "flanking" (similar to pincers but any 2 enemy units adjacent with 2 tiles apart counts),
+engagement logic (when an enemy is adjacent, it cannot disengage), disengagement logic (when 2+ is engaging, one of them can disengage, as long as 1 is always engaging it),
 - capture by placing a piece on the enemy (like chess)
 - thrusting logic = no game logic, just player aware to eat a piece by placing it on the enemy then putting it back.
 
