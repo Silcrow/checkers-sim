@@ -1,6 +1,7 @@
 # File: main.py
 import pygame
 from board import Board
+from templates.checkers import TEMPLATE as CHECKERS_TEMPLATE
 
 # Constants
 WIDTH, HEIGHT = 640, 640
@@ -21,7 +22,7 @@ pygame.display.set_caption("Board Simulation Phase 2")
 # Game loop
 def main():
     clock = pygame.time.Clock()
-    board = Board(ROWS, COLS, TILE_SIZE)
+    board = Board(ROWS, COLS, TILE_SIZE, CHECKERS_TEMPLATE)
     selected_piece = None
 
     run = True

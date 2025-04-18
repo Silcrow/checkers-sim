@@ -6,10 +6,14 @@ LIGHT_BROWN = (240, 217, 181)
 DARK_BROWN = (181, 136, 99)
 
 class Board:
-    def __init__(self, rows, cols, tile_size):
+    def __init__(self, rows, cols, tile_size, ruleset):
         self.rows = rows
         self.cols = cols
         self.tile_size = tile_size
+        self.ruleset = ruleset
+        self.kill_rule = ruleset["kill_rule"]
+        self.score_rule = ruleset["score_rule"]
+        self.win_rule = ruleset["win_rule"]
         self.board = []
         self.create_board()
 
@@ -55,6 +59,10 @@ class Board:
             return False
         if self.board[row][col] is not None:
             return False  # Can't move onto another piece
+
+        killed = self.kill_rule.should_kill(self, piece, row, col)
+        for enemy in killed:
+            self.board[enemy.row][enemy.col] = None
 
         self.board[piece.row][piece.col] = None
         self.board[row][col] = piece
